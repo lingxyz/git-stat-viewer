@@ -7,6 +7,10 @@ gitProjects=(
 	'git@github.com:zhanglingco/Blog.git'
 	'git@github.com:zhanglingco/coder-interview.git'
 );
+# 开始日期
+startData=2019-6-1;
+# 结束日期
+endData=2019-6-30;
 
 for(( i=0;i<${#gitProjects[@]};i++)) do
 	git clone ${gitProjects[i]};
@@ -20,7 +24,7 @@ for(( i=0;i<${#gitProjects[@]};i++)) do
 	while read name;
 	do
 		echo -en "$name | ";
-		git log --author="$name" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "%s | %s | %s\n", add, subs, loc }' -;
+		git log --author="$name" --pretty=tformat: --since ="$startData" --until="$endData" --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "%s | %s | %s\n", add, subs, loc }' -;
 	done;
 	printf "\n";
 
