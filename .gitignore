@@ -7,5 +7,5 @@ node_modules
 # dist
 dist.*
 
-# gitStasts
+# git stasts
 .projects

@@ -1,5 +1,6 @@
 /**
  * Git 代码行数统计（以人为维度）
+ * todo: 支持分支切换
  */
 
 const fs = require('fs')
@@ -22,7 +23,7 @@ var totalStastsObj = {'## 汇总': {}}
 
 // 循环获取git代码提交情况
 gitProjects.forEach((item, index) => {
-	const dirName = item.replace(/^.*\:\d+\/((\w|\-|\/)+)\.git/g, '$1')
+	const dirName = item.address.replace(/^.*\:\d+\/((\w|\-|\/)+)\.git/g, '$1')
 	const changeName = './.projects/' + dirName
 	item.branch = item.branch || 'master'
 
@@ -30,7 +31,7 @@ gitProjects.forEach((item, index) => {
 	if (fs.existsSync(path.join(__dirname, changeName))) {
 		execSync(`cd ${changeName}; git checkout ${item.branch};git pull origin ${item.branch};`)
 	} else {
-		execSync(`git clone -b ${item.branch} ${item} ${changeName};`)
+		execSync(`git clone -b ${item.branch} ${item.address} ${changeName};`)
 	}
 
 	// 统计代码
