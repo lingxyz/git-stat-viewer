@@ -10,19 +10,19 @@ const execSync = require('child_process').execSync
 
 // 从配置读取代码仓库、开始日期、结束日期、输出文件等信息
 const config = require('./config')
-const gitProjects = config.gitProjects
+const repositories = config.repositories
 const startData = config.startData
 const endData = config.endData
 const distFile = config.distFile
 
 const distFilePath = path.join(__dirname, distFile)
-fs.writeFileSync(distFilePath, '# 代码提交量统计\n## 项目详情')
+fs.writeFileSync(distFilePath, '# 代码提交量统计\n## 详情')
 
 // 代码行数总计（以人为维度统计）
 var totalStastsObj = {'## 汇总': {}}
 
 // 循环获取git代码提交情况
-gitProjects.forEach((item, index) => {
+repositories.forEach((item, index) => {
 	const dirName = item.address.replace(/^.*\:\d+\/((\w|\-|\/)+)\.git/g, '$1')
 	const changeName = './.projects/' + dirName
 	item.branch = item.branch || 'master'
