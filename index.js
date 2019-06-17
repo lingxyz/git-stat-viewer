@@ -7,16 +7,12 @@ const path = require('path')
 const execFileSync = require('child_process').execFileSync
 const execSync = require('child_process').execSync
 
-const gitProjects = [
-	'git@github.com:zhanglingco/Blog.git',
-	'git@github.com:zhanglingco/coder-interview.git'
-]
-// 开始日期
-const startData = '2019-1-1';
-// 结束日期
-const endData = '2019-6-30';
-// 输出文件
-const distFile = 'dist.md';
+// 从配置读取代码仓库、开始日期、结束日期、输出文件等信息
+const config = require('./config')
+const gitProjects = config.gitProjects
+const startData = config.startData
+const endData = config.endData
+const distFile = config.distFile
 
 const distFilePath = path.join(__dirname, distFile)
 fs.writeFileSync(distFilePath, '# 代码提交量统计\n## 项目详情')
