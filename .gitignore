@@ -1,0 +1,5 @@
+# mac dir
+.DS_Store
+
+# npm package
+node_modules
