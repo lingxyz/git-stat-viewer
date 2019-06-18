@@ -8,6 +8,8 @@ Git 代码提交量统计工具
 - [x] 计算总行数
 - [x] 添加日期限制
 - [x] 支持分支切换
+- [ ] 封装命令行工具
+- [ ] 可视化操作
 
 ### 快速上手
 
@@ -46,10 +48,10 @@ Ling Z | 1024 | 99 | 925
 在`config.js`中，有如下参数可定义：
 
 param | type | comment
----- | --- | --- 
-repositories | Array | Git仓库信息 
+---- | --- | ---
+repositories | Array | Git仓库信息
 repositories.address | String | Git远程仓库地址
 repositories.branch | String | Git分支
-startData | String | 统计的开始时间，格式`YYYY-MM-DD` 
-endData | String | 统计的结束时间，格式`YYYY-MM-DD` 
+startData | String | 统计的开始时间，格式`YYYY-MM-DD`
+endData | String | 统计的结束时间，格式`YYYY-MM-DD`
 distFile | String | 输出的文件名，默认`dist.md`
