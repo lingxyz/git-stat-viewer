@@ -19,7 +19,7 @@ const distFilePath = path.join(__dirname, distFile)
 fs.writeFileSync(distFilePath, '# 代码提交量统计\n## 详情')
 
 // 代码行数总计（以人为维度统计）
-var totalStastsObj = {'## 汇总': {}}
+var totalStatObj = {'## 汇总': {}}
 
 // 循环获取git代码提交情况
 repositories.forEach((item, index) => {
@@ -35,27 +35,27 @@ repositories.forEach((item, index) => {
 	}
 
 	// 统计代码
-	const stastsData = execFileSync(
+	const statData = execFileSync(
 		path.join(__dirname, './index.sh'), [ startData, endData], {
 			cwd: path.join(__dirname, changeName),
 		}).toString()
 
 	// 组装对象
-	const stastsObj = eval("(" + stastsData + ")")
+	const statObj = eval("(" + statData + ")")
 	const distObj = {}
-	distObj[dirName] = stastsObj
+	distObj[dirName] = statObj
 
 	// 打印输出
 	dist(distObj)
 
 	// 生成总计对象
-	Object.keys(stastsObj).forEach(element => {
-		if (!totalStastsObj['## 汇总'][element]) {
-			totalStastsObj['## 汇总'][element] = [0, 0, 0]
+	Object.keys(statObj).forEach(element => {
+		if (!totalStatObj['## 汇总'][element]) {
+			totalStatObj['## 汇总'][element] = [0, 0, 0]
 		}
-		totalStastsObj['## 汇总'][element][0] += stastsObj[element][0] || 0
-		totalStastsObj['## 汇总'][element][1] += stastsObj[element][1] || 0
-		totalStastsObj['## 汇总'][element][2] += stastsObj[element][2] || 0
+		totalStatObj['## 汇总'][element][0] += statObj[element][0] || 0
+		totalStatObj['## 汇总'][element][1] += statObj[element][1] || 0
+		totalStatObj['## 汇总'][element][2] += statObj[element][2] || 0
 	})
 
 	// 重置&清理
@@ -63,7 +63,7 @@ repositories.forEach((item, index) => {
 })
 
 // 输出每人代码总行数
-dist(totalStastsObj)
+dist(totalStatObj)
 
 // 打印输出md
 function dist (obj) {

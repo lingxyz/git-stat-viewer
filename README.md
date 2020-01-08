@@ -1,7 +1,7 @@
-# git-stasts
+# git-stat
 Git 代码提交量统计工具
 
-### 功能概览
+## 功能概览
 
 - [x] 代码行数统计
 - [x] 文件格式美化
@@ -11,12 +11,12 @@ Git 代码提交量统计工具
 - [ ] 封装命令行工具
 - [ ] 可视化操作
 
-### 快速上手
+## 快速上手
 
 1. 将代码克隆到本地
 
 ```bash
-git clone https://github.com/zhanglingco/git-stasts.git
+git clone https://github.com/cookx/git-stat.git
 ```
 
 2. 添加可执行权限
@@ -24,7 +24,7 @@ git clone https://github.com/zhanglingco/git-stasts.git
 由于程序中集成了`shell`,所以需要手动开启`index.sh`可执行权限
 
 ```bash
-cd git-stasts
+cd git-stat
 chmod +x ./index.sh
 ```
 
@@ -32,10 +32,10 @@ chmod +x ./index.sh
 
 在 `node >= v8.9`环境中，执行
 ```bash
-node git-stasts/index.js
+node git-stat/index.js
 ```
 
-执行完成之后，在 `git-stasts/dist.md` 中查看统计结果
+执行完成之后，在 `git-stat/dist.md` 中查看统计结果
 
 一个将输出结果在[typora](https://typora.io/)中展示的🌰：
 
@@ -44,7 +44,7 @@ user name | added lines | removed lines | total lines
 Ling | 354 | 55 | 299
 Ling Z | 1024 | 99 | 925
 
-### 配置说明
+## 配置说明
 在`config.js`中，有如下参数可定义：
 
 param | type | comment

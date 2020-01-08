@@ -7,5 +7,5 @@ node_modules
 # dist
 dist.*
 
-# git stasts
+# git stat
 .projects
