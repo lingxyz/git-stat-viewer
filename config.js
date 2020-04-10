@@ -4,9 +4,9 @@ const repositories = [
 ]
 
 // 开始日期
-const startData = '2019-6-1';
+const startDate = '2019-6-1';
 // 结束日期
-const endData = '2020-1-30';
+const endDate = '2020-1-30';
 // 输出文件
 const distFile = 'dist.md';
 

@@ -10,6 +10,7 @@ const path = require('path')
 const execFileSync = require('child_process').execFileSync
 const execSync = require('child_process').execSync
 const program = require('commander')
+const getConfig = require('../libs/getConfig')
 
 /**
  * Usage
@@ -18,32 +19,24 @@ const program = require('commander')
 program
   .version(require('../package').version)
   .usage('<git-repo-name/config> <dest-name>')
-  .option('--since', 'config start date, YYYY-MM-DD')
-  .option('--until', 'config end date, YYYY-MM-DD')
+  .option('--since [value]', 'config start date, YYYY-MM-DD')
+  .option('--until [value]', 'config end date, YYYY-MM-DD')
   .option('-ui', 'create a server to do visual operation')
-
-// 解析 process.argv 数组： [node目录, 执行文件目录, 参数]
-program.parse(process.argv)
+  .parse(process.argv)
 
 /**
  * Settings
+ * 从配置读取代码仓库、开始日期、结束日期、输出文件等信息
  */
-// 从配置读取代码仓库、开始日期、结束日期、输出文件等信息
-var gitRepo = program.args[0]
-const config = require(path.join(__dirname, gitRepo))
-const repositories = config.repositories || program.args[0]
-const startDate = config.startDate || program.args[3]
-const endDate = config.endDate || program.args[4]
-const distFile = config.distFile  || program.args[1]
+const config = getConfig(program)
 
-const distFilePath = path.join(__dirname, '../', distFile)
-fs.writeFileSync(distFilePath, '# 代码提交量统计\n## 详情')
+fs.writeFileSync(config.distFile, '# 代码提交量统计\n## 详情')
 
 // 代码行数总计（以人为维度统计）
 var totalStatObj = {'## 汇总': {}}
 
 // 循环获取git代码提交情况
-repositories.forEach((item, index) => {
+config.repositories.forEach((item, index) => {
 	const dirName = item.address.replace(/^.*\:\d+\/((\w|\-|\/)+)\.git/g, '$1')
 	const changeName = '../.projects/' + dirName
 	item.branch = item.branch || 'master'
@@ -58,7 +51,7 @@ repositories.forEach((item, index) => {
 
 	// 统计代码
 	const statData = execFileSync(
-		path.join(__dirname, '../index.sh'), [ startDate, endDate], {
+		path.join(__dirname, '../index.sh'), [config.startDate, config.endDate], {
 			cwd: path.join(__dirname, changeName),
 		}).toString()
 
@@ -91,14 +84,14 @@ dist(totalStatObj)
 function dist (obj) {
 	for (let key in obj) {
 		// 打印当前项目统计
-		fs.appendFileSync(distFilePath, `\n${key}：\n` +
+		fs.appendFileSync(config.distFile, `\n${key}：\n` +
 		'user name | added lines | removed lines | total lines\n' +
 		'---- | --- | --- | ---\n')
 
 		Object.keys(obj[key]).forEach(element => {
 			// 去除提交量为0的
 			if (obj[key][element][0] === obj[key][element][1]  && obj[key][element][1] === obj[key][element][2] && obj[key][element][0] === 0) return
-			fs.appendFileSync(distFilePath, `${element} | ${obj[key][element][0] || 0} | ${obj[key][element][1] || 0} | ${obj[key][element][2] || 0}\n`)
+			fs.appendFileSync(config.distFile, `${element} | ${obj[key][element][0] || 0} | ${obj[key][element][1] || 0} | ${obj[key][element][2] || 0}\n`)
 		})
 	}
 }

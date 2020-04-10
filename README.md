@@ -19,20 +19,26 @@ Git 代码提交量统计工具，支持命令行和视图操作
 npm i git-stat-viewer -g
 ```
 
-2. 添加可执行权限
+<!-- 2. 添加可执行权限
 
 由于程序中集成了`shell`,所以需要手动开启`index.sh`可执行权限
 
 ```bash
 cd git-stat
 chmod +x ./index.sh
-```
+``` -->
 
-3. 执行统计
+2. 执行统计
 
 在 `node >= v8.9`环境中，执行
 ```bash
-gitstat
+gitstat [配置文件/git仓库地址/git本地仓库目录] [结果输出文件]
+```
+
+指定统计时间
+
+```bash
+gitstat [配置文件/git仓库地址/git本地仓库目录] [结果输出文件] --since YYYY-MM-DD --until YYYY-MM-DD
 ```
 
 执行完成之后，在 `git-stat/dist.md` 中查看统计结果
@@ -52,6 +58,6 @@ param | type | comment
 repositories | Array | Git仓库信息
 repositories.address | String | Git远程仓库地址
 repositories.branch | String | Git分支
-startData | String | 统计的开始时间，格式`YYYY-MM-DD`
-endData | String | 统计的结束时间，格式`YYYY-MM-DD`
+startDate | String | 统计的开始时间，格式`YYYY-MM-DD`
+endDate | String | 统计的结束时间，格式`YYYY-MM-DD`
 distFile | String | 输出的文件名，默认`dist.md`
