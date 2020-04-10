@@ -1,17 +1,18 @@
 /**
  * 配置信息读取
- * args[0] git remote address, git 仓库, 配置文件
+ * args[0] git remote address, git 仓库, 配置文件 json/yaml
  * args[1] 输出结果的文件路径
  * args[2] 开始日期
  * args[3] 结束日期
  */
 const path = require('path')
+const read = require('read-metadata')
 
 module.exports = function(program) {
   // config 类型判断
   let config = {}, repositories
-  if (/\.(js|json|yaml)$/g.test(program.args[0])) {
-    config = require(path.join(process.cwd(), program.args[0]))
+  if (/\.(json|yaml)$/g.test(program.args[0])) {
+    config = read.sync(path.join(process.cwd(), program.args[0]))
     repositories = config.repositories
   } else if (/\.git$/g.test(program.args[0])) {
     repositories = [{address: program.args[0]}]

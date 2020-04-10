@@ -1,0 +1,13 @@
+# 代码仓库列表
+repositories:
+  -
+    # address: 'https://github.com/cookx/git-stat.git'
+    address: 'ssh://git@10.211.62.41:1022/c4i-microservices/c4i-admin-service.git'
+    branch: master
+
+# 开始日期
+startDate: 2019-6-1
+# 结束日期
+endDate: 2020-1-30
+# 输出文件
+distFile: dist.md

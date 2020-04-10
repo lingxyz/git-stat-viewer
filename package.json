@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/cookx/git-stat#readme",
   "dependencies": {
-    "commander": "^5.0.0"
+    "commander": "^5.0.0",
+    "read-metadata": "^1.0.0"
   }
 }

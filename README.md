@@ -52,13 +52,13 @@ Ling | 354 | 55 | 299
 Ling Z | 1024 | 99 | 925
 
 ## 配置说明
-在`config.js`中，有如下参数可定义：
+在`config.json/yaml`中，有如下参数可定义：
 
 param | type | comment
 ---- | --- | ---
 repositories | Array | Git仓库信息
-repositories.address | String | Git远程仓库地址
-repositories.branch | String | Git分支
+repositories[i].address | String | Git远程仓库地址
+repositories[i].branch | String | Git分支
 startDate | String | 统计的开始时间，格式`YYYY-MM-DD`
 endDate | String | 统计的结束时间，格式`YYYY-MM-DD`
 distFile | String | 输出的文件名，默认`dist.md`
