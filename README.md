@@ -33,13 +33,13 @@ chmod +x ./index.sh
 
 在 `node >= v8.9`环境中，执行
 ```bash
-gitstat [配置文件/git仓库地址/git本地仓库目录] [结果输出文件]
+gitstat g/generate [配置文件/git仓库地址/git本地仓库目录] [结果输出文件]
 ```
 
 指定统计时间
 
 ```bash
-gitstat [配置文件/git仓库地址/git本地仓库目录] [结果输出文件] --since YYYY-MM-DD --until YYYY-MM-DD
+gitstat g/generate [配置文件/git仓库地址/git本地仓库目录] [结果输出文件] --since YYYY-MM-DD --until YYYY-MM-DD
 ```
 
 执行完成之后，在 `git-stat/dist.md` 中查看统计结果
@@ -51,6 +51,15 @@ user name | added lines | removed lines | total lines
 Ling | 354 | 55 | 299
 Ling Z | 1024 | 99 | 925
 
+3. 清除缓存
+
+```bash
+# 清除本地缓存的git仓库
+gitstat clear
+# 同时清除输出的结果文件
+gitstat clear --all
+```
+
 ## 配置说明
 在`config.json/yaml`中，有如下参数可定义：
 
@@ -59,8 +68,8 @@ param | type | comment
 repositories | Array | Git仓库信息
 repositories[i].address | String | Git远程仓库地址
 repositories[i].branch | String | Git分支
-startDate | String | 统计的开始时间，格式`YYYY-MM-DD`
-endDate | String | 统计的结束时间，格式`YYYY-MM-DD`
+since | String | 统计的开始时间，格式`YYYY-MM-DD`
+until | String | 统计的结束时间，格式`YYYY-MM-DD`
 distFile | String | 输出的文件名，默认`dist.md`
 
 ## License

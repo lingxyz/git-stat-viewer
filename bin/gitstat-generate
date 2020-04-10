@@ -19,9 +19,8 @@ const output = require('../libs/output')
 program
   .version(require('../package').version)
   .usage('<git-repo-name/config> <dest-name>')
-  .option('--since [value]', 'config start date, YYYY-MM-DD')
-  .option('--until [value]', 'config end date, YYYY-MM-DD')
-  .option('-ui', 'create a server to do visual operation')
+  .option('-s, --since [value]', 'config start date, YYYY-MM-DD')
+  .option('-u, --until [value]', 'config end date, YYYY-MM-DD')
   .parse(process.argv)
 
 /**
@@ -48,10 +47,12 @@ config.repositories.forEach((item, index) => {
 	const distObj = {}
 	distObj[repoPath.repoName] = statData
 
-	// 打印输出
+  /**
+   * 打印输出
+   */
 	output(distObj, config.distFile)
 
-	// 生成总计对象
+	// 生成汇总数据，Object
 	Object.keys(statData).forEach(element => {
 		if (!totalStatObj['## 汇总'][element]) {
 			totalStatObj['## 汇总'][element] = [0, 0, 0]
@@ -60,12 +61,7 @@ config.repositories.forEach((item, index) => {
 		totalStatObj['## 汇总'][element][1] += statData[element][1] || 0
 		totalStatObj['## 汇总'][element][2] += statData[element][2] || 0
 	})
-
-	// 重置&清理
-	// execSync(`rm -rf ${localRepoPath}`)
 })
 
-/**
- * 输出每人代码总行数
- */
+// 输出仓库汇总
 output(totalStatObj, config.distFile)

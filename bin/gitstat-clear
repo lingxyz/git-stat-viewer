@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+const path = require('path')
+const execSync = require('child_process').execSync
+const program = require('commander')
+const cacheConfig = require('../.cache-config.json')
+
+
+program
+  .usage('clear local cache')
+  .option('--all', 'clear local repo cache and dist result file')
+  .parse(process.argv)
+
+const cacheDir = '../.projects/'
+
+// 清理仓库文件缓存
+execSync(`rm -rf ${path.join(__dirname, cacheDir)}`)
+
+// 删除结果文件
+if (program.all) {
+  execSync(`rm -rf ${cacheConfig.distFile}`)
+}

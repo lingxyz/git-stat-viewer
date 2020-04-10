@@ -1,9 +1,12 @@
 {
   "name": "git-stat-viewer",
   "bin": {
-    "gitstat": "bin/git-stat"
+    "gitstat": "bin/gitstat",
+    "gitstat-g": "bin/gitstat-generate",
+    "gitstat-generate": "bin/gitstat-generate",
+    "gitstat-clear": "bin/gitstat-clear"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Git 代码提交量统计工具",
   "main": "index.js",
   "scripts": {

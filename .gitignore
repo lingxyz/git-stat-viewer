@@ -7,5 +7,6 @@ node_modules
 # dist
 dist.*
 
-# git stat
+# cache
 .projects
+.cache-config.json

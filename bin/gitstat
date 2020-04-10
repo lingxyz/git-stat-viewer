@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+const program = require('commander')
+
+/**
+ * Usage
+ */
+// gitstat --help，命令列表
+program
+  .version(require('../package').version)
+  .usage('<command> [options]')
+  .command('generate/g', 'generate code stat results')
+  .command('ui', 'create a server to do visual operation')
+  .command('clear', 'clear local cache')
+  .parse(process.argv)

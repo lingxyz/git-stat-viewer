@@ -5,6 +5,7 @@
  * args[2] 开始日期
  * args[3] 结束日期
  */
+const fs = require('fs')
 const path = require('path')
 const read = require('read-metadata')
 
@@ -20,8 +21,12 @@ module.exports = function(program) {
     // 查找目录下的git地址/copy当前目录
   }
   const distFile = path.join(process.cwd(), config.distFile  || program.args[1] || 'dist.md')
-  const startDate = config.startDate || program.since
-  const endDate = config.endDate || program.until
+  const startDate = config.since || program.since
+  const endDate = config.until || program.until
 
-  return { repositories, distFile, startDate, endDate }
+  const results = { repositories, distFile, startDate, endDate }
+
+  fs.writeFileSync(path.join(__dirname, '../.cache-config.json'), JSON.stringify(results, '', 2))
+
+  return results
 }
