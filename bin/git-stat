@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * Git 代码行数统计（以人为维度）
  * todo: 支持分支切换
@@ -7,15 +9,34 @@ const fs = require('fs')
 const path = require('path')
 const execFileSync = require('child_process').execFileSync
 const execSync = require('child_process').execSync
+const program = require('commander')
 
+/**
+ * Usage
+ */
+// gitstat --help，命令列表
+program
+  .version(require('../package').version)
+  .usage('<git-repo-name/config> <dest-name>')
+  .option('--since', 'config start date, YYYY-MM-DD')
+  .option('--until', 'config end date, YYYY-MM-DD')
+  .option('-ui', 'create a server to do visual operation')
+
+// 解析 process.argv 数组： [node目录, 执行文件目录, 参数]
+program.parse(process.argv)
+
+/**
+ * Settings
+ */
 // 从配置读取代码仓库、开始日期、结束日期、输出文件等信息
-const config = require('./config')
-const repositories = config.repositories
-const startData = config.startData
-const endData = config.endData
-const distFile = config.distFile
+var gitRepo = program.args[0]
+const config = require(path.join(__dirname, gitRepo))
+const repositories = config.repositories || program.args[0]
+const startDate = config.startDate || program.args[3]
+const endDate = config.endDate || program.args[4]
+const distFile = config.distFile  || program.args[1]
 
-const distFilePath = path.join(__dirname, distFile)
+const distFilePath = path.join(__dirname, '../', distFile)
 fs.writeFileSync(distFilePath, '# 代码提交量统计\n## 详情')
 
 // 代码行数总计（以人为维度统计）
@@ -24,19 +45,20 @@ var totalStatObj = {'## 汇总': {}}
 // 循环获取git代码提交情况
 repositories.forEach((item, index) => {
 	const dirName = item.address.replace(/^.*\:\d+\/((\w|\-|\/)+)\.git/g, '$1')
-	const changeName = './.projects/' + dirName
+	const changeName = '../.projects/' + dirName
 	item.branch = item.branch || 'master'
 
+  const projectsAbsoluteDir = path.join(__dirname, changeName)
 	// 拉取更新代码仓库，切换分支
-	if (fs.existsSync(path.join(__dirname, changeName))) {
-		execSync(`cd ${changeName}; git checkout ${item.branch};git pull origin ${item.branch};`)
+	if (fs.existsSync(projectsAbsoluteDir)) {
+		execSync(`cd ${projectsAbsoluteDir}; git checkout ${item.branch};git pull origin ${item.branch};`)
 	} else {
 		execSync(`git clone -b ${item.branch} ${item.address} ${changeName};`)
 	}
 
 	// 统计代码
 	const statData = execFileSync(
-		path.join(__dirname, './index.sh'), [ startData, endData], {
+		path.join(__dirname, '../index.sh'), [ startDate, endDate], {
 			cwd: path.join(__dirname, changeName),
 		}).toString()
 

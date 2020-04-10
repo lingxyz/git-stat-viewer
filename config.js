@@ -11,5 +11,5 @@ const endData = '2020-1-30';
 const distFile = 'dist.md';
 
 module.exports = {
-	repositories, startData, endData, distFile
+	repositories, startDate, endDate, distFile
 }

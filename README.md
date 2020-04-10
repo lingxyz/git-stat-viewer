@@ -1,5 +1,5 @@
-# git-stat
-Git 代码提交量统计工具
+# git-stat-viewer
+Git 代码提交量统计工具，支持命令行和视图操作
 
 ## 功能概览
 
@@ -8,15 +8,15 @@ Git 代码提交量统计工具
 - [x] 计算总行数
 - [x] 添加日期限制
 - [x] 支持分支切换
-- [ ] 封装命令行工具
-- [ ] 可视化操作
+- [x] 封装命令行工具
+- [ ] 视图操作
 
 ## 快速上手
 
-1. 将代码克隆到本地
+1. 全局安装
 
 ```bash
-git clone https://github.com/cookx/git-stat.git
+npm i git-stat-viewer -g
 ```
 
 2. 添加可执行权限
@@ -32,7 +32,7 @@ chmod +x ./index.sh
 
 在 `node >= v8.9`环境中，执行
 ```bash
-node git-stat/index.js
+gitstat
 ```
 
 执行完成之后，在 `git-stat/dist.md` 中查看统计结果

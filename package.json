@@ -1,0 +1,25 @@
+{
+  "name": "git-stat-viewer",
+  "bin": {
+    "gitstat": "bin/git-stat"
+  },
+  "version": "1.0.0",
+  "description": "Git 代码提交量统计工具",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cookx/git-stat.git"
+  },
+  "author": "zhangling",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cookx/git-stat/issues"
+  },
+  "homepage": "https://github.com/cookx/git-stat#readme",
+  "dependencies": {
+    "commander": "^5.0.0"
+  }
+}
