@@ -16,7 +16,12 @@ module.exports = function(program) {
     config = read.sync(path.join(process.cwd(), program.args[0]))
     repositories = config.repositories
   } else if (/\.git$/g.test(program.args[0])) {
-    repositories = [{address: program.args[0]}]
+    // 兼容命令行多个仓库地址，以,隔开
+    const repoArr = program.args[0].split(',')
+    repositories = repoArr.map(element => {
+      return {address: element}
+    });
+
   } else {
     // 查找目录下的git地址/copy当前目录
   }

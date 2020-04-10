@@ -42,6 +42,8 @@ gitstat g/generate [配置文件/git仓库地址/git本地仓库目录] [结果�
 gitstat g/generate [配置文件/git仓库地址/git本地仓库目录] [结果输出文件] --since YYYY-MM-DD --until YYYY-MM-DD
 ```
 
+命令行若输入多个仓库地址，以,隔开
+
 `--since` 可简写成 `-s`，`--until` 可简写成 `-u`
 
 执行完成之后，在 `git-stat/dist.md` 中查看统计结果
@@ -73,6 +75,22 @@ repositories[i].branch | String | Git分支
 since | String | 统计的开始时间，格式`YYYY-MM-DD`
 until | String | 统计的结束时间，格式`YYYY-MM-DD`
 distFile | String | 输出的文件名，默认`dist.md`
+
+如定义一个`config.yaml`:
+
+```yaml
+# 代码仓库列表
+repositories:
+  -
+    address: 'https://github.com/cookx/git-stat.git'
+    branch: master
+# 开始日期
+since: 2019-1-1
+# 结束日期
+until: 2020-6-30
+# 输出文件
+distFile: dist.md
+```
 
 ## License
 
