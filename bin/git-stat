@@ -6,11 +6,10 @@
  */
 
 const fs = require('fs')
-const path = require('path')
-const execFileSync = require('child_process').execFileSync
 const program = require('commander')
 const getConfig = require('../libs/getConfig')
 const fetchRepo = require('../libs/fetchRepo')
+const codeStat = require('../libs/codeStat')
 
 /**
  * Usage
@@ -41,28 +40,24 @@ var totalStatObj = {'## 汇总': {}}
 config.repositories.forEach((item, index) => {
   const repoPath = fetchRepo(item.address, item.branch)
 
-	// 统计代码
-	const statData = execFileSync(
-		path.join(__dirname, '../index.sh'), [config.startDate, config.endDate], {
-			cwd: repoPath.localRepoPath
-		}).toString()
+  // 统计代码原始结果对象
+  const statData = codeStat(repoPath.localRepoPath, config.startDate, config.endDate)
 
 	// 组装对象
-	const statObj = eval("(" + statData + ")")
 	const distObj = {}
-	distObj[repoPath.repoName] = statObj
+	distObj[repoPath.repoName] = statData
 
 	// 打印输出
 	dist(distObj)
 
 	// 生成总计对象
-	Object.keys(statObj).forEach(element => {
+	Object.keys(statData).forEach(element => {
 		if (!totalStatObj['## 汇总'][element]) {
 			totalStatObj['## 汇总'][element] = [0, 0, 0]
 		}
-		totalStatObj['## 汇总'][element][0] += statObj[element][0] || 0
-		totalStatObj['## 汇总'][element][1] += statObj[element][1] || 0
-		totalStatObj['## 汇总'][element][2] += statObj[element][2] || 0
+		totalStatObj['## 汇总'][element][0] += statData[element][0] || 0
+		totalStatObj['## 汇总'][element][1] += statData[element][1] || 0
+		totalStatObj['## 汇总'][element][2] += statData[element][2] || 0
 	})
 
 	// 重置&清理
