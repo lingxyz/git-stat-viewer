@@ -8,9 +8,6 @@
 const path = require('path')
 
 module.exports = function(program) {
-  // path.relative('../', process.cwd())
-  console.log(process.cwd(), 11111)
-
   // config 类型判断
   let config = {}, repositories
   if (/\.(js|json|yaml)$/g.test(program.args[0])) {

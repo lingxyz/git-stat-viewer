@@ -1,4 +1,5 @@
-# git-stat-viewer
+# git-stat-viewer [![Build Status](https://img.shields.io/circleci/project/cookx/git-stat-viewer/master.svg)](https://circleci.com/gh/cookx/git-stat-viewer) [![npm package](https://img.shields.io/npm/v/git-stat-viewer.svg)](https://www.npmjs.com/package/git-stat-viewer)
+
 Git 代码提交量统计工具，支持命令行和视图操作
 
 ## 功能概览
@@ -61,3 +62,7 @@ repositories.branch | String | Git分支
 startDate | String | 统计的开始时间，格式`YYYY-MM-DD`
 endDate | String | 统计的结束时间，格式`YYYY-MM-DD`
 distFile | String | 输出的文件名，默认`dist.md`
+
+## License
+
+[MIT](http://opensource.org/licenses/MIT)
