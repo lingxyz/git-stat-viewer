@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+
+/**
+ * UI 可视化
+ * todo: 接口生成下载逻辑
+ */
+
+const path = require('path')
+const express = require('express')
+const program = require('commander')
+
+/**
+ * Usage
+ */
+// gitstat --help，命令列表
+program
+  .version(require('../package').version)
+  .usage('<git-repo-name/config> <dest-name>')
+  .option('-p, --port [value]', 'server start port, default 8080')
+  .parse(process.argv)
+
+const app = express()
+const port = program.port || 8080
+
+// 静态文件配置
+app.use(express.static(path.join(__dirname, '../static')))
+// 起服务
+app.listen(port, () => {
+  console.log(`[gitstat ui] server start at http://localhost:${port}`)
+})
+// 生成接口
+// app.get('/', (req, res) => {
+//   res.render('index')
+// })
+// 下载接口
+// app.get('/', (req, res) => {
+//   res.render('index')
+// })

@@ -1,0 +1,38 @@
+# 代码仓库列表
+repositories:
+  -
+    address: 'ssh://git@10.211.62.41:1022/c4i-microservices/c4i-smr-api.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/c4i-microservices/c4i-smr-service.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/c4i-microservices/c4i-admin-service.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/c4i-microservices/c4i-bi-api.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/c4i-microservices/c4i-bi-service.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/c4i-microservices/c4i-ci-api.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/c4i-microservices/c4i-ci-service.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/c4i-microservices/c4i-mob-app-service.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/c4i-microservices/c4i-mob-jobs-service.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/c4i-microservices/c4i-core.git'
+    branch: master
+# 开始日期
+since: 2021-1-1
+# 结束日期
+until: 2021-6-30
+# 输出文件
+distFile: dist.md

@@ -1,0 +1,21 @@
+
+# 代码仓库列表
+repositories:
+  -
+    address: 'ssh://git@10.211.62.41:1022/ka-microservices/ka-code-generator-service.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/ka-microservices/ka-budget-api.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/ka-microservices/ka-budget-service.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/ka-microservices/ka-job-service.git'
+    branch: master
+# 开始日期
+since: 2021-7-1
+# 结束日期
+until: 2021-8-26
+# 输出文件
+distFile: dist.md

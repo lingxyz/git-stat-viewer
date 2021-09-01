@@ -11,5 +11,5 @@ module.exports = function(repoPath, startDate, endDate) {
 			cwd: repoPath
     }).toString()
 
-    return eval("(" + statData + ")")
+  return eval("(" + statData + ")")
 }
