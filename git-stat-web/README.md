@@ -1,0 +1,24 @@
+- 框架：nest.js + typeorm + SQLite + vue3 + webpack ssr + antd
+- 功能：
+  - 代码提交流水表
+    - 字段：group project branch commitId 人 addLines deleteLines
+  - 代码提交统计图
+    - 人天网格图
+    - 按项目/人天产出趋势图
+  - 代码提交预警
+    - 规则设置：
+      - 监测指标：工作日提交<1次、需提交当天未提交(Excel导入，根据jira任务制作)
+      - 预警方式：微信群机器人、钉钉群机器人、短信、邮箱
+      - 预警列表，状态：未关闭、已关闭
+  - 分支管理
+    - 设置：自动批量创建分支、合并分支、tag的时间
+  - 规范文档、规范自动检测
+    - 命名检测：feature/release master
+    - 提交信息检测：feat fix ...
+    - 未打tag检测 未删除合并分支检测
+    - 分支保护检测
+  - 代码review
+    - 在线review代码，评论、记录，讨论，统计解决状态
+    - vscode在线工具？？？
+  - Open API 展示
+    - 展示后端接口，供企业收集数据

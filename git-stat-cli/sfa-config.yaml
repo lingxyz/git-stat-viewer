@@ -1,0 +1,65 @@
+# 代码仓库列表
+repositories:
+  -
+    address: 'ssh://git@10.211.62.41:1022/fsfa/console-api.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/fsfa/sfa-parent.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/fsfa/sfa-h5-360.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/fsfa/apitest.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/fsfa/mobile-ios.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/fsfa/mobile-android.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/fsfa/console.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/fsfa/vue-management-system.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/fsfa/api.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/fsfa/external-api.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/fsfa/app.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/fsfa/user.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/fsfa/fsfa-common.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/fsfa/goods-api.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/fsfa/event-api.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/fsfa/user-api.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/fsfa/goods.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/fsfa/event.git'
+    branch: master
+  -
+    address: 'ssh://git@10.211.62.41:1022/fsfa/external.git'
+    branch: master
+# 开始日期
+since: 2021-7-1
+# 结束日期
+until: 2021-12-15
+# 输出文件
+distFile: sfa-dist.md

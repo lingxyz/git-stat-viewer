@@ -1,0 +1,12 @@
+# mac dir
+.DS_Store
+
+# npm package
+node_modules
+
+# dist
+dist.*
+
+# cache
+.projects
+.cache-config.json

@@ -9,13 +9,14 @@ repositories:
     branch: master
   -
     address: 'ssh://git@10.211.62.41:1022/ka-microservices/ka-budget-service.git'
-    branch: master
+    branch: release_sprint37
   -
     address: 'ssh://git@10.211.62.41:1022/ka-microservices/ka-job-service.git'
-    branch: master
+    branch: release_sprint37
+    # S37_blake
 # 开始日期
-since: 2021-7-1
+since: 2022-4-26
 # 结束日期
-until: 2021-8-26
+until: 2022-4-27
 # 输出文件
 distFile: dist.md
